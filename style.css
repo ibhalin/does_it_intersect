@@ -1,0 +1,232 @@
+html {
+    background-color: #222222;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+@media screen and (max-width: 800px)  {
+
+    #app {
+        margin-inline: 0em;
+    } 
+    
+    #map {
+        height: 50vh;
+        width: 95vw;
+    }
+
+    #map-canevas-container {
+        display:flex;
+        justify-content: center;
+        margin-bottom: 0.3em;
+    }
+
+    app-type-select {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    app-results {
+        padding-top: 3em;
+    }
+
+    .row {
+        display: auto;
+    }
+    
+    .cell {
+        width: 100%;
+        min-width: 50px;
+        min-height: 50px;
+        background-color: #333333;
+        margin-top: 3px;
+        margin-right: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: small;
+    }
+
+    .header {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 1150px) {
+
+    #app {
+        margin-inline: 1.5em;
+    } 
+    
+    #map {
+        height: 70vh;
+        width: 90vw;
+    }
+
+    #map-canevas-container {
+        display:flex;
+        justify-content: center;
+        margin-bottom: 0.3em;
+    }
+
+    app-type-select {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    app-results {
+        padding-top: 3em;
+    }
+
+    .row {
+        display: flex;
+    }
+    
+    .cell {
+        width: 12.5%;
+        min-width: 50px;
+        min-height: 50px;
+        background-color: #333333;
+        margin-top: 3px;
+        margin-right: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: small;
+    }
+
+    .when-collapsed {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 1150px) {
+
+    #app {
+        width: min(1400px, 100%);
+        display: flex;
+        margin-inline: auto;
+    } 
+    
+    #map {
+        height: 90vh;
+        width: min(700px, 50vw);
+        float: left;
+    }
+
+    app-map-canevas {
+        flex-direction: column-reverse;
+    }
+
+    app-type-select {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
+    app-results {
+        width: 100%;
+        margin-left: 0.5em;}
+
+    .row {
+        display: flex;
+    }
+    
+    .cell {
+        width: 12.5%;
+        min-width: 50px;
+        min-height: 50px;
+        background-color: #333333;
+        margin-top: 3px;
+        margin-right: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: small;
+    }
+
+    .when-collapsed {
+        display: none;
+    }
+
+}
+
+.ol-viewport {
+    border-radius: 8px;
+    border: #E94F37 solid 1px;
+}
+
+app-map-canevas {
+    display: inline-flex;
+    position: relative;
+    border-radius: 8px;
+}
+
+app-type-select {
+    width: 100%;
+    height: 15%;
+    background: #d4d4dc2a;
+    position: absolute;
+}
+
+app-results {
+    color: #cdcdd5}
+
+    
+/* table style */
+
+#result-table {
+    text-align: center;
+    width: 100%
+}
+
+.cell > p, .cell > code {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.empty-cell {
+    border: none !important;
+    display: hidden !important;
+    background: none !important;
+}
+
+.false {
+    color: #E94F37
+}
+
+.true {
+    color: #ACE894
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #cdcdd5;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: auto;
+    display: inline;
+    background-color: #222222;
+    border : 0.5px solid #cdcdd5;
+    color: #cdcdd5;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
