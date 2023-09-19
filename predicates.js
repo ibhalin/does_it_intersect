@@ -54,33 +54,45 @@ class PredicateResult {
     constructor(predicate, service) {
         this.predicate = predicate;
         this.service = service;
-        this.divClass = `cell predicate-${this.predicate.name} service-${this.service}`;
-        this.div = this._getDiv();
+        this.cellDivClass = `cell predicate-${this.predicate.name} service-${this.service}`;
+        this.cellDiv = this._getCellDiv();
+        this.badgeDivClass = `badge predicate-${this.predicate.name} service-${this.service}`;
+        this.badgeDiv = this._getBadgeDiv();
+        this.content;
+        this.divClassSuffix;
+        this.hovertext;
     }
 
-    _getDiv() {
+    _getDiv(divClass) {
         try {
-            return document.getElementsByClassName(this.divClass).item(0);
+            return document.getElementsByClassName(divClass).item(0);
         } catch (error) {
             throw new Error(`
-            Couldn't find div with class ${this.divClass}.
+            Couldn't find cell div with class ${divClass}.
             ${error}
             `)
         }
     }
 
-    _updateDiv() {
+    _getCellDiv() {
+        return this._getDiv(this.cellDivClass)
+    }
 
-        console.log(this.predicate);
-        this.div.className = `${this.divClass} ${this.divClassSuffix}`;
+    _getBadgeDiv() {
+        return this._getDiv(this.badgeDivClass)
+    }
+
+    _updateCellDiv() {
+
+        this.cellDiv.className = `${this.cellDivClass} ${this.divClassSuffix}`;
 
         if (this.hovertext) {
-            this.div.innerHTML = `
+            this.cellDiv.innerHTML = `
                 <div class="tooltip">${this.content}
                 <span class="tooltiptext">${this.hovertext}</span>
                 </div>`
         } else {
-            this.div.innerHTML = this.content;
+            this.cellDiv.innerHTML = this.content;
         }
     }
     
@@ -135,7 +147,7 @@ class PredicateResultCollection {
     
     pushToDOM() {
         for (var predicateResult in this) {
-            this[predicateResult]._updateDiv()
+            this[predicateResult]._updateCellDiv()
         }
     }
 }
