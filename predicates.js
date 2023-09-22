@@ -56,8 +56,6 @@ class PredicateResult {
         this.service = service;
         this.cellDivClass = `cell predicate-${this.predicate.name} service-${this.service}`;
         this.cellDiv = this._getCellDiv();
-        this.badgeDivClass = `badge predicate-${this.predicate.name} service-${this.service}`;
-        this.badgeDiv = this._getBadgeDiv();
         this.content;
         this.divClassSuffix;
         this.hovertext;
@@ -82,7 +80,7 @@ class PredicateResult {
         return this._getDiv(this.badgeDivClass)
     }
 
-    _updateCellDiv() {
+    updateCellDiv() {
 
         this.cellDiv.className = `${this.cellDivClass} ${this.divClassSuffix}`;
 
@@ -95,8 +93,8 @@ class PredicateResult {
             this.cellDiv.innerHTML = this.content;
         }
     }
-    
-}
+
+    }
 
 class PredicateNotSupported extends PredicateResult {
 
@@ -147,8 +145,8 @@ class PredicateResultCollection {
     
     pushToDOM() {
         for (var predicateResult in this) {
-            this[predicateResult]._updateCellDiv()
-        }
+            this[predicateResult].updateCellDiv()
+            }
     }
 }
  

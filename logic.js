@@ -1,4 +1,4 @@
-import {ShapelyPredicatesHandling, TrufPredicatesHandling} from "/handling.js"
+import {ShapelyPredicatesHandling, TurfPredicatesHandling} from "/handling.js"
 import {CustomFeaturesClass} from "./features.js";
 
 class TypeSelect extends HTMLElement {
@@ -181,9 +181,26 @@ class MapCanevas extends HTMLElement {
 window.customElements.define('app-map-canevas', MapCanevas)
 
 class Results extends HTMLElement {
-
+  
+  static updateResults = (features) => {
+      if (features.features.length > 1) {
+  
+        const resultsObject = {};
+  
+        resultsObject.turf = TurfPredicatesHandling.getResultData(features.asArrayOfGeoJson());
+        resultsObject.turf.pushToDOM();
+  
+        ShapelyPredicatesHandling.fetchResultData(features.asArrayOfString())
+          .then( (resultData) => {
+            resultsObject.shapely = resultData;
+            resultsObject.shapely.pushToDOM();
+          }
+        );
+      }
+  }  
+  
   connectedCallback() {
-     
+    
     this.innerHTML = `
       <div id="result-table">
 
@@ -194,19 +211,19 @@ class Results extends HTMLElement {
           <div class="cell header predicate-isEqual"><code>Equals</code></div>
           <div class="cell header predicate-isIntersect"><code>Intersects</code></div>
           <div class="cell header predicate-isOverlap"><code>Overlaps</code></div>
-          <div class="cell header predicate-isTouch"><code>isTouch</code></div>
+          <div class="cell header predicate-isTouch"><code>Touches</code></div>
           <div class="cell header predicate-isWithin"><code>Is Within</code></div>
         </div>
 
-        <div id="service-${TrufPredicatesHandling.service}" class="row">
-          <div class="cell index service-${TrufPredicatesHandling.service}">${TrufPredicatesHandling.service}</div>
-          <div class="cell predicate-isContain service-${TrufPredicatesHandling.service}"></span></div>
-          <div class="cell predicate-isCross service-${TrufPredicatesHandling.service}"><span class='when-collapsed'><code>Crosses</code></span></div>
-          <div class="cell predicate-isEqual service-${TrufPredicatesHandling.service}"><span class='when-collapsed'><code>Equals</code></span></div>
-          <div class="cell predicate-isIntersect service-${TrufPredicatesHandling.service}"><span class='when-collapsed'><code>Intersects</code></span></div>
-          <div class="cell predicate-isOverlap service-${TrufPredicatesHandling.service}"><span class='when-collapsed'><code>Overlaps</code></span></div>
-          <div class="cell predicate-isTouch service-${TrufPredicatesHandling.service}"><span class='when-collapsed'><code>Touches</code></span></div>
-          <div class="cell predicate-isWithin service-${TrufPredicatesHandling.service}"><span class='when-collapsed'><code>is Within</code></span></div>
+        <div id="service-${TurfPredicatesHandling.service}" class="row">
+          <div class="cell index service-${TurfPredicatesHandling.service}">${TurfPredicatesHandling.service}</div>
+          <div class="cell predicate-isContain service-${TurfPredicatesHandling.service}"></span></div>
+          <div class="cell predicate-isCross service-${TurfPredicatesHandling.service}"><span class='when-collapsed'><code>Crosses</code></span></div>
+          <div class="cell predicate-isEqual service-${TurfPredicatesHandling.service}"><span class='when-collapsed'><code>Equals</code></span></div>
+          <div class="cell predicate-isIntersect service-${TurfPredicatesHandling.service}"><span class='when-collapsed'><code>Intersects</code></span></div>
+          <div class="cell predicate-isOverlap service-${TurfPredicatesHandling.service}"><span class='when-collapsed'><code>Overlaps</code></span></div>
+          <div class="cell predicate-isTouch service-${TurfPredicatesHandling.service}"><span class='when-collapsed'><code>Touches</code></span></div>
+          <div class="cell predicate-isWithin service-${TurfPredicatesHandling.service}"><span class='when-collapsed'><code>is Within</code></span></div>
         </div>
 
         <div id="service-${ShapelyPredicatesHandling.service}" class="row">
@@ -222,26 +239,11 @@ class Results extends HTMLElement {
 
       </div>
     `;
-    
-    document.addEventListener('features-added', (event) => {
-
-      const features = new CustomFeaturesClass(event.detail.features)
-
-      if (features.features.length > 1) {
-
-        const resultsObject = {};
-
-        resultsObject.turf = TrufPredicatesHandling.getResultData(features.asArrayOfGeoJson());
-        resultsObject.turf.pushToDOM();
-
-        ShapelyPredicatesHandling.fetchResultData(features.asArrayOfString())
-          .then( (resultData) => {
-            resultsObject.shapely = resultData;
-            resultsObject.shapely.pushToDOM();
-          }
-        );
-      }
-    });
   }
 }
 window.customElements.define('app-results', Results)
+
+document.addEventListener('features-added', (event) => {
+  const features = new CustomFeaturesClass(event.detail.features);
+  Results.updateResults(features);
+});

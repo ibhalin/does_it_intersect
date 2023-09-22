@@ -1,6 +1,6 @@
 import { Predicate, predicateCollection, PredicateResultCollection, PredicateBool, PredicateError, PredicateNotSupported } from "./predicates.js";
 
-class TrufPredicatesHandling {
+class TurfPredicatesHandling {
     
     static service = 'turf'
     
@@ -16,13 +16,13 @@ class TrufPredicatesHandling {
     static getResultData(featuresAsArrayOfGeoJson) {
 
         return new PredicateResultCollection({
-            isContain: TrufPredicatesHandling.toPredicateResult(predicateCollection.contains, turf.booleanContains, featuresAsArrayOfGeoJson),
-            isCross: TrufPredicatesHandling.toPredicateResult(predicateCollection.crosses, turf.booleanCrosses, featuresAsArrayOfGeoJson),
-            isEqual: TrufPredicatesHandling.toPredicateResult(predicateCollection.equals, turf.booleanEqual, featuresAsArrayOfGeoJson),
-            isIntersect: TrufPredicatesHandling.toPredicateResult(predicateCollection.intersects, turf.booleanIntersects, featuresAsArrayOfGeoJson),
-            isOverlap: TrufPredicatesHandling.toPredicateResult(predicateCollection.overlaps, turf.booleanOverlap, featuresAsArrayOfGeoJson),
+            isContain: TurfPredicatesHandling.toPredicateResult(predicateCollection.contains, turf.booleanContains, featuresAsArrayOfGeoJson),
+            isCross: TurfPredicatesHandling.toPredicateResult(predicateCollection.crosses, turf.booleanCrosses, featuresAsArrayOfGeoJson),
+            isEqual: TurfPredicatesHandling.toPredicateResult(predicateCollection.equals, turf.booleanEqual, featuresAsArrayOfGeoJson),
+            isIntersect: TurfPredicatesHandling.toPredicateResult(predicateCollection.intersects, turf.booleanIntersects, featuresAsArrayOfGeoJson),
+            isOverlap: TurfPredicatesHandling.toPredicateResult(predicateCollection.overlaps, turf.booleanOverlap, featuresAsArrayOfGeoJson),
             isTouch: new PredicateNotSupported(predicateCollection.touches, this.service),
-            isWithin: TrufPredicatesHandling.toPredicateResult(predicateCollection.within, turf.booleanWithin, featuresAsArrayOfGeoJson),
+            isWithin: TurfPredicatesHandling.toPredicateResult(predicateCollection.within, turf.booleanWithin, featuresAsArrayOfGeoJson),
         })
     }
 }
@@ -83,4 +83,4 @@ class ShapelyPredicatesHandling {
     }
 }
 
-export {ShapelyPredicatesHandling, TrufPredicatesHandling}
+export {ShapelyPredicatesHandling, TurfPredicatesHandling}
