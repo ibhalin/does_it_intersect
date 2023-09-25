@@ -199,47 +199,6 @@ class Results extends HTMLElement {
       }
   }  
   
-  connectedCallback() {
-    
-    this.innerHTML = `
-      <div id="result-table">
-
-        <div id="table-header-row" class="row">
-          <div class="cell header index empty-cell"></div>
-          <div class="cell header predicate-isContain"><code>Contains</code></div>
-          <div class="cell header predicate-isCross"><code>Crosses</code></div>
-          <div class="cell header predicate-isEqual"><code>Equals</code></div>
-          <div class="cell header predicate-isIntersect"><code>Intersects</code></div>
-          <div class="cell header predicate-isOverlap"><code>Overlaps</code></div>
-          <div class="cell header predicate-isTouch"><code>Touches</code></div>
-          <div class="cell header predicate-isWithin"><code>Is Within</code></div>
-        </div>
-
-        <div id="service-${TurfPredicatesHandling.service}" class="row">
-          <div class="cell index service-${TurfPredicatesHandling.service}">${TurfPredicatesHandling.service}</div>
-          <div class="cell predicate-isContain service-${TurfPredicatesHandling.service}"></span></div>
-          <div class="cell predicate-isCross service-${TurfPredicatesHandling.service}"><span class='when-collapsed'><code>Crosses</code></span></div>
-          <div class="cell predicate-isEqual service-${TurfPredicatesHandling.service}"><span class='when-collapsed'><code>Equals</code></span></div>
-          <div class="cell predicate-isIntersect service-${TurfPredicatesHandling.service}"><span class='when-collapsed'><code>Intersects</code></span></div>
-          <div class="cell predicate-isOverlap service-${TurfPredicatesHandling.service}"><span class='when-collapsed'><code>Overlaps</code></span></div>
-          <div class="cell predicate-isTouch service-${TurfPredicatesHandling.service}"><span class='when-collapsed'><code>Touches</code></span></div>
-          <div class="cell predicate-isWithin service-${TurfPredicatesHandling.service}"><span class='when-collapsed'><code>is Within</code></span></div>
-        </div>
-
-        <div id="service-${ShapelyPredicatesHandling.service}" class="row">
-          <div class="cell index service-${ShapelyPredicatesHandling.service}">${ShapelyPredicatesHandling.service}</div>
-          <div class="cell predicate-isContain service-${ShapelyPredicatesHandling.service}"><span class='when-collapsed'><code>Contains</code></span></div>
-          <div class="cell predicate-isCross service-${ShapelyPredicatesHandling.service}"><span class='when-collapsed'><code>Crosses</code></span></div>
-          <div class="cell predicate-isEqual service-${ShapelyPredicatesHandling.service}"><span class='when-collapsed'><code>Equals</code></span></div>
-          <div class="cell predicate-isIntersect service-${ShapelyPredicatesHandling.service}"><span class='when-collapsed'><code>Intersects</code></span></div>
-          <div class="cell predicate-isOverlap service-${ShapelyPredicatesHandling.service}"><span class='when-collapsed'><code>Overlaps</code></span></div>
-          <div class="cell predicate-isTouch service-${ShapelyPredicatesHandling.service}"><span class='when-collapsed'><code>Touches</code></span></div>
-          <div class="cell predicate-isWithin service-${ShapelyPredicatesHandling.service}"><span class='when-collapsed'><code>is Within</code></span></div>
-        </div>
-
-      </div>
-    `;
-  }
 }
 window.customElements.define('app-results', Results)
 
