@@ -1,5 +1,10 @@
 import { Predicate, predicateCollection, PredicateResultCollection, PredicateBool, PredicateError, PredicateNotSupported } from "./predicates.js";
 
+const serviceCollection = {
+    truf: 'turf',
+    shapely: 'shapely',
+}
+
 class TurfPredicatesHandling {
     
     static service = 'turf'
@@ -83,4 +88,4 @@ class ShapelyPredicatesHandling {
     }
 }
 
-export {ShapelyPredicatesHandling, TurfPredicatesHandling}
+export {ShapelyPredicatesHandling, TurfPredicatesHandling, serviceCollection}
