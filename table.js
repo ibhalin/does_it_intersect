@@ -18,7 +18,6 @@ class Cell extends HTMLElement {
         this.service = service;
         this.predicate = predicate;
         this.className = `cell predicate-${this.predicate.name} service-${this.service}`;
-        this.content;
         this.tooltip;
     }
 }
@@ -150,7 +149,6 @@ class Table extends HTMLElement {
     }
 
     _addChildren() {
-        //pb with undefiend HERE
         for (var i of this.rowCollection) {
             if (i != undefined) {
                 this.appendChild(i)
