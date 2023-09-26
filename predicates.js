@@ -56,6 +56,8 @@ class PredicateResult {
         this.service = service;
         this.cellDivClass = `cell predicate-${this.predicate.name} service-${this.service}`;
         this.cellDiv = this._getCellDiv();
+        this.badgeDivClass = `badge predicate-${this.predicate.name} service-${this.service}`;
+        this.badgeDiv = this._getBadgeDiv();
         this.content;
         this.divClassSuffix;
         this.hovertext;
@@ -66,18 +68,18 @@ class PredicateResult {
             return document.getElementsByClassName(divClass).item(0);
         } catch (error) {
             throw new Error(`
-            Couldn't find cell div with class ${divClass}.
+            Couldn't find div with class ${divClass}.
             ${error}
             `)
         }
     }
 
     _getCellDiv() {
-        return this._getDiv(this.cellDivClass)
+        return this._getDiv(this.cellDivClass);
     }
 
     _getBadgeDiv() {
-        return this._getDiv(this.badgeDivClass)
+        return this._getDiv(this.badgeDivClass);
     }
 
     updateCellDiv() {
@@ -94,7 +96,15 @@ class PredicateResult {
         }
     }
 
+    updateBadgeDiv() {
+
+        this.badgeDiv.className = `${this.badgeDivClass} ${this.divClassSuffix}`;
+        if (this.hovertext) {
+            //todo
+        }
+        this.badgeDiv.updateContent(this.content);
     }
+}
 
 class PredicateNotSupported extends PredicateResult {
 
@@ -146,7 +156,8 @@ class PredicateResultCollection {
     pushToDOM() {
         for (var predicateResult in this) {
             this[predicateResult].updateCellDiv()
-            }
+            this[predicateResult].updateBadgeDiv()
+        }
     }
 }
  

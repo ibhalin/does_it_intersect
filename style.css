@@ -10,6 +10,7 @@ p {
 
 @media screen and (max-width: 800px)  {
 
+    
     #app {
         margin-inline: 0em;
     } 
@@ -18,11 +19,15 @@ p {
         height: 50vh;
         width: 95vw;
     }
-
+    
     #map-canevas-container {
         display:flex;
         justify-content: center;
         margin-bottom: 0.3em;
+    }
+    
+    app-table {
+        display: none;
     }
 
     app-type-select {
@@ -34,29 +39,57 @@ p {
         padding-top: 3em;
     }
 
-    .row {
-        display: auto;
-    }
-    
-    .cell {
-        width: 100%;
-        min-width: 50px;
-        min-height: 50px;
-        background-color: #333333;
-        margin-top: 3px;
-        margin-right: 3px;
+    .badge-panel-items-container {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: small;
+        flex-direction: row;
+        flex-wrap: wrap
     }
 
-    .header {
-        display: none;
+    app-badge {
+        padding: 2px;
+        display: inline-flex;
+        font-size: 11px;
+        flex-grow: 1;
+        flex-basis: 40%;
+        }
+
+    .badge-position-left > svg > rect {
+        fill:#333333;
+    }
+
+    .badge-position-right > svg > rect {
+        fill: #181818;
+    }
+
+    app-badge.true > app-badge-part.badge-position-right > svg > rect {
+        fill:#ACE894;
+    }
+
+    app-badge.true > app-badge-part.badge-position-right > svg > text {
+        fill:#222222;
+        font-weight: bold;     
+    }
+    
+    app-badge.false > app-badge-part.badge-position-right > svg > rect {
+        fill:#E94F37
+    }
+    
+    app-badge.false > app-badge-part.badge-position-right > svg > text {
+        fill:#222222;
+        font-weight: bold;     
+    }
+
+    app-badge.not-supported > app-badge-part.badge-position-right > svg > text {
+        font-size: 9px;   
     }
 }
 
-@media screen and (min-width: 500px) and (max-width: 1150px) {
+
+@media screen and (min-width: 800px) and (max-width: 1150px) {
+
+    app-badge-table {
+        display: none;
+    }
 
     #app {
         margin-inline: 1.5em;
@@ -106,6 +139,10 @@ p {
 }
 
 @media screen and (min-width: 1150px) {
+
+    app-badge-table {
+        display: none;
+    }
 
     #app {
         width: min(1400px, 100%);
@@ -157,7 +194,7 @@ p {
 
 .ol-viewport {
     border-radius: 8px;
-    border: #E94F37 solid 1px;
+    /* border: #E94F37 solid 1px; */
 }
 
 app-map-canevas {
