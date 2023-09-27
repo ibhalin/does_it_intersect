@@ -9,7 +9,6 @@ class BadgePart extends HTMLElement {
         this.className = `badge-part badge-position-${this.position}`;
         this.svgElement;
         this.fillColor = '#ffffff';
-        // this.fontSize = '11';
     }
 
     _getDefaultContent() {
