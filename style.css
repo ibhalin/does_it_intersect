@@ -194,7 +194,6 @@ p {
 
 .ol-viewport {
     border-radius: 8px;
-    /* border: #E94F37 solid 1px; */
 }
 
 app-map-canevas {
@@ -208,13 +207,44 @@ app-type-select {
     height: 15%;
     background: #d4d4dc2a;
     position: absolute;
+    display: flex;
+}
+
+app-clickable-feature-icon {
+    max-width: 90%;
+    aspect-ratio: 1;
+}
+
+app-clickable-feature-icon.selected {
+    fill: #E94F37;
+}
+
+app-clickable-feature-icon:hover {
+    fill: #E94F37;
+    aspect-ratio: 1;
+}
+
+/* Specific style for point svg */
+
+svg.icon-point {
+    stroke: black;
+    aspect-ratio: 1;
+}
+
+app-clickable-feature-icon:hover > svg.icon-point {
+    stroke: #E94F37;
+}
+
+app-clickable-feature-icon.selected > svg.icon-point {
+    stroke: #E94F37;
 }
 
 app-results {
     color: #cdcdd5}
 
-    
-/* table style */
+.input-group {
+    display: flex;
+}
 
 #result-table {
     text-align: center;
@@ -256,8 +286,6 @@ app-results {
     text-align: center;
     border-radius: 6px;
     padding: 10px;
-
-    /* Position the tooltip */
     position: absolute;
     z-index: 1;
     top: -5px;

@@ -1,28 +1,6 @@
 import {ShapelyPredicatesHandling, TurfPredicatesHandling} from "/handling.js"
 import {CustomFeaturesClass} from "./features.js";
 
-class TypeSelect extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
-        <div class="input-group">
-          <div>
-              <select class="form-select" id="type">
-                  <option value="Point">Point</option>
-                  <option value="LineString">LineString</option>
-                  <option value="Polygon">Polygon</option>
-                  <option value="None">None</option>
-              </select>
-          </div>
-          <div>
-            <input class="form-control" type="button" value="❌" id="clear">
-          </div>
-        </div>
-        `;
-    this.typeSelect = document.getElementById('type');
-  }
-}
-window.customElements.define('app-type-select', TypeSelect)
-
 class StyleControler {
 
   static colors = {
@@ -115,18 +93,24 @@ class MapCanevas extends HTMLElement {
       controls: []
     });
     
-    const typeSelectElement = this.querySelector('app-type-select');
-    const typeSelect = typeSelectElement.typeSelect;
+    document.addEventListener('ClickableFeatureIcon-clicked', (event) => {
+      if (event.detail.value !== 'clear') {
+        this.map.removeInteraction(draw);
+        addInteractions(event.detail.value);
+      } else {
+          MapCanevas.uidCounter = 0;
+          this.source.clear();
+      }
+    });
 
     let draw;
     let snap;
     
-    const addInteractions = () => {
-      const value = typeSelect.value;
+    const addInteractions = (value) => {
       if (value !== 'None') {
         draw = new ol.interaction.Draw({
           source: this.source,
-          type: typeSelect.value,
+          type: value,
           maxPoints: 20,
           style: StyleControler.drawStyleFunction
         });
@@ -140,11 +124,6 @@ class MapCanevas extends HTMLElement {
         this.map.addInteraction(snap);
       }
     }
-    
-    typeSelect.onchange = () => {
-      this.map.removeInteraction(draw);
-      addInteractions();
-    };
 
     const removeLastFeature = () => {
       const features = this.source.getFeatures();
@@ -169,12 +148,7 @@ class MapCanevas extends HTMLElement {
       }));
     })
 
-    document.getElementById('clear').addEventListener('click', () => {
-      MapCanevas.uidCounter = 0;
-      this.source.clear();
-    });
-
-    addInteractions();
+    addInteractions('None');
   }
 }
 
