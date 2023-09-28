@@ -148,8 +148,11 @@ p {
 
     #app {
         width: min(1400px, 100%);
-        display: flex;
         margin-inline: auto;
+    } 
+
+    #app-body {
+        display: flex;
     } 
     
     #map {
@@ -299,3 +302,43 @@ app-results {
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
+app-header-title {
+    color: #cdcdd5;
+    padding-bottom: 40px;
+}
+
+#container {
+    color:#999;
+    font-size:25px;
+    font-weight:bold;
+    display: flex;
+  }
+  
+  #flip {
+    height:30px;
+    line-height: 30px;
+    overflow:hidden;
+  }
+  
+  #flip > div > div {
+    color:#fff;
+    display:inline-block;
+  }
+  
+  #flip div:first-child {
+    animation: show 15s;
+  }
+  
+  @keyframes show {
+    0% {margin-top:-120px;}
+    9% {margin-top:-120px;}
+    10% {margin-top:-90px;}
+    19% {margin-top:-90px;}
+    20% {margin-top:-60px;}
+    29% {margin-top:-60px;}
+    30% {margin-top:-30px;}
+    39% {margin-top:-30px;}
+    40% {margin-top:0px;}
+    100% {margin-top:0px;}
+  }
