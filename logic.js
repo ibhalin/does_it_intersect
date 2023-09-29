@@ -172,6 +172,9 @@ class Results extends HTMLElement {
         );
       }
   }  
+
+  connectedCallback() {
+  }
   
 }
 window.customElements.define('app-results', Results)

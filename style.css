@@ -8,6 +8,10 @@ p {
     margin-block-end: 0em;
 }
 
+body {
+    margin-top: 0px;
+}
+
 @media screen and (max-width: 800px)  {
 
     
@@ -37,7 +41,7 @@ p {
     }
 
     app-results {
-        padding-top: 3em;
+        flex-flow: column-reverse;
     }
 
     .badge-panel-items-container {
@@ -114,7 +118,7 @@ p {
     }
 
     app-results {
-        padding-top: 3em;
+        flex-flow: column-reverse;
     }
 
     .row {
@@ -174,7 +178,16 @@ p {
 
     app-results {
         width: 100%;
-        margin-left: 0.5em;}
+        flex-flow: column;
+    }
+
+    details {
+        padding-left: 1em
+      }
+
+    #result-container {
+        margin-left: 1.5em;
+    }
 
     .row {
         display: flex;
@@ -247,7 +260,13 @@ app-clickable-feature-icon.selected > svg.icon-point {
 }
 
 app-results {
-    color: #cdcdd5}
+    display: flex;
+    margin-bottom: .5em;
+}
+
+#result-container {
+    color: #cdcdd5;
+}
 
 .input-group {
     display: flex;
@@ -305,40 +324,74 @@ app-results {
 
 app-header-title {
     color: #cdcdd5;
-    padding-bottom: 40px;
 }
 
-#container {
+#title-container {
+    padding-top: 1em;
+    padding-bottom: 1em;
     color:#999;
     font-size:25px;
     font-weight:bold;
     display: flex;
   }
   
-  #flip {
+#flip {
     height:30px;
     line-height: 30px;
     overflow:hidden;
-  }
+}
   
-  #flip > div > div {
+#flip > div > div {
     color:#fff;
     display:inline-block;
-  }
+}
   
-  #flip div:first-child {
+#flip div:first-child {
     animation: show 15s;
+}
+  
+@keyframes show {
+    0%, 9% {margin-top:-120px;}
+    10%, 19% {margin-top:-90px;}
+    20%, 29% {margin-top:-60px;}
+    30%, 39% {margin-top:-30px;}
+    40%, 100% {margin-top:0px;}
+}
+
+@keyframes fadeout {
+    0%, 90% {opacity: 1;}
+    100% {
+        opacity: 0;
+        display:none;
+    }
+}
+
+details {
+    font-size: 16px;
+    padding-top: 2em
+  }
+
+details summary {
+    font-size: 20px;
+    cursor: pointer;
+    transition: margin 150ms ease-out;
   }
   
-  @keyframes show {
-    0% {margin-top:-120px;}
-    9% {margin-top:-120px;}
-    10% {margin-top:-90px;}
-    19% {margin-top:-90px;}
-    20% {margin-top:-60px;}
-    29% {margin-top:-60px;}
-    30% {margin-top:-30px;}
-    39% {margin-top:-30px;}
-    40% {margin-top:0px;}
-    100% {margin-top:0px;}
+details[open] summary {
+    margin-bottom: 10px;
   }
+
+app-answer {
+    line-height: 1.6;
+}
+
+summary {
+    padding: .5em;
+    border : 0.5px solid #E94F37;
+    border-radius: 8px;
+    /* background: #E94F37; */
+}
+
+.title-accent {
+    color: #E94F37 !important;
+}
