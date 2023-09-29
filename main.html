@@ -7,6 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/ol@v7.4.0/dist/ol.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.4.0/ol.css">  
   <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+  <script type="module" src="qna.js"></script>
   <script type="module" src="header-title.js"></script>
   <script type="module" src="predicates.js"></script>
   <script type="module" src="features.js"></script>
@@ -21,12 +22,15 @@
     <app-header-title></app-header-title>
     <div id="app-body">
       <div id="map-canevas-container">
-        <app-map-canevas></app-map-canevas></div>
+        <app-map-canevas></app-map-canevas>
+      </div>
+      <div id="result-container">
         <app-results>
           <app-table></app-table>
           <app-badge-table></app-badge-table>
         </app-results>
-    </div>
+        <app-qna-collection></app-qna-collection>
+      </div>
   </div>
 </body>
 </html>
