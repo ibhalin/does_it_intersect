@@ -1,4 +1,4 @@
-import {ShapelyPredicatesHandling, TurfPredicatesHandling} from "/handling.js"
+import {ShapelyPredicatesHandling, TurfPredicatesHandling} from "./handling.js"
 import {CustomFeaturesClass} from "./features.js";
 
 class StyleControler {
@@ -70,10 +70,7 @@ class MapCanevas extends HTMLElement {
     `;
     
     this.raster = new ol.layer.Tile({
-      source: new ol.source.XYZ({
-        url:
-        'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}@2x.png',
-      }),
+      source: new ol.source.OSM(),
     });
     
     this.source = new ol.source.Vector({ wrapX: false });
