@@ -70,7 +70,11 @@ class MapCanevas extends HTMLElement {
     `;
     
     this.raster = new ol.layer.Tile({
-      source: new ol.source.OSM(),
+      source: new ol.source.OSM({
+        attributions: [
+            ol.source.OSM.ATTRIBUTION
+        ]          
+    }),
     });
     
     this.source = new ol.source.Vector({ wrapX: false });
@@ -87,7 +91,9 @@ class MapCanevas extends HTMLElement {
         center: [0, 0],
         zoom: 2
       }),
-      controls: []
+      controls: [
+        new ol.control.Attribution()
+    ]
     });
     
     document.addEventListener('ClickableFeatureIcon-clicked', (event) => {
