@@ -250,7 +250,7 @@ app-map-canevas {
 }
 
 app-type-select {
-    background: #d4d4dc2a;
+    background: #ffffffa1;;
     position: absolute;
     display: inline-flex;
     flex-direction: row;
@@ -321,6 +321,10 @@ app-results {
 
 .true {
     color: #ACE894
+}
+
+app-cell.not-supported {
+    font-size: 9px;
 }
 
 .tooltip {
