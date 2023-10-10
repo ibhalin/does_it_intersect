@@ -36,7 +36,7 @@ class ShapelyPredicatesHandling {
 
     static service = 'shapely'
 
-    static url = 'http://127.0.0.1:5000/shapely/get_predicates/'
+    static url = 'http://antoinehalin.fr/does-it-intersect-python/shapely/get_predicates/'
 
     static async fetchPredicates(featuresAsArrayOfGeoJson) {
         try {
