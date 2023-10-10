@@ -4,7 +4,7 @@ const qnaJson = {
         "answer": "<span class='body-accent'>A spatial predicate is a representation of the topological relationship between two entities</span> (or <em>features</em>). It can either be <code>true</code> of <code>false</code>. GIS applications relies on spatial predicates to describe the arrangement of features with other features.<br>The most common spatial predicates are listed in the above table : <code>contains</code>, <code>crosses</code>, <code>equals</code>, <code>intersect</code>, <code>overlaps</code>, <code>touches</code> and <code>within</code>. <span class='body-accent'>They may seem self-explanatory, but some of them are tricky!</span>"
     },
     "1": {
-        "question":"How come there’s different results accross services ?",
+        "question":"How come there are different results accross services ?",
         "answer":"Spatial predicates are typically discussed in academic litterature. The Open Geospatial Consortium (OGC) provides a standard definition of spatial predicates that is well established among the geospatial community, but it is up to each GIS software editor to follow these standards. Moreover, even with a common definition, <span class='body-accent'>spatial predicate opereations’ results may vary in some edge cases, simply because spatial predicates are implemented differently within each software.</span>"
     },
     "2": {
