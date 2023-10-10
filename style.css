@@ -185,7 +185,7 @@ a {
     } 
     
     #map {
-        height: 90vh;
+        height: 75vh;
         width: min(700px, 50vw);
         float: left;
     }
@@ -263,11 +263,11 @@ app-clickable-feature-icon {
 }
 
 app-clickable-feature-icon.selected {
-    fill: #cdcdd5;
+    fill: #F4B942;
 }
 
 app-clickable-feature-icon:hover {
-    fill: #cdcdd5;
+    fill: #F4B942;
     aspect-ratio: 1;
 }
 
@@ -279,11 +279,11 @@ svg.icon-point {
 }
 
 app-clickable-feature-icon:hover > svg.icon-point {
-    stroke: #cdcdd5;
+    stroke: #F4B942;
 }
 
 app-clickable-feature-icon.selected > svg.icon-point {
-    stroke: #cdcdd5;
+    stroke: #F4B942;
 }
 
 app-results {
