@@ -1,13 +1,20 @@
 import { Predicate, predicateCollection, PredicateResultCollection, PredicateBool, PredicateError, PredicateNotSupported } from "./predicates.js";
 
 const serviceCollection = {
-    truf: 'turf',
-    shapely: 'shapely',
+    truf: {
+        name: 'turf',
+        url: undefined},
+    shapely: {
+        name: 'shapely',
+        url: 'http://127.0.0.1:5000/shapely/get_predicates/'},
+    postgis: {
+        name: 'postgis',
+        url: "http://127.0.0.1:5000/postgis/get_predicates/"},
 }
 
 class TurfPredicatesHandling {
     
-    static service = 'turf'
+    static service = serviceCollection.truf.name;
     
     static toPredicateResult(predicate, f, featuresAsArrayOfGeoJson) {
         try {
@@ -32,13 +39,14 @@ class TurfPredicatesHandling {
     }
 }
 
-class ShapelyPredicatesHandling {
+class PythonPredicatesHandling {
 
-    static service = 'shapely'
+    constructor(service, url) {
+        this.service = service;
+        this.url = url;
+    }
 
-    static url = 'https://antoinehalin.fr/does-it-intersect-python/shapely/get_predicates/'
-
-    static async fetchPredicates(featuresAsArrayOfGeoJson) {
+    async fetchPredicates(featuresAsArrayOfGeoJson) {
         try {
             const response = await fetch(`${this.url}${encodeURIComponent(featuresAsArrayOfGeoJson.toString())}`);
             const data = await response.json()
@@ -49,7 +57,7 @@ class ShapelyPredicatesHandling {
         }
     }
 
-    static toPredicateResultCollection(data){
+    toPredicateResultCollection(data){
         
         var predicateResultCollection = {
             isContain: undefined,
@@ -63,11 +71,14 @@ class ShapelyPredicatesHandling {
 
         for (var key in data) {
             const predicate = new Predicate(key)
-            switch (data[key]) {
+            console.log(predicate)
+            console.log(data)
+            switch (String(data[key])) {
                 case "true":
                   predicateResultCollection[key] = new PredicateBool(predicate, this.service, true);
                   break;
                 case "false":
+                    console.log("ok")
                   predicateResultCollection[key] = new PredicateBool(predicate, this.service, false);
                   break;
                 default:
@@ -80,7 +91,7 @@ class ShapelyPredicatesHandling {
 
     }
 
-    static async fetchResultData(featuresAsArrayOfGeoJson) {
+    async fetchResultData(featuresAsArrayOfGeoJson) {
 
         var predicateResultCollection = await this.fetchPredicates(featuresAsArrayOfGeoJson).then((data) => this.toPredicateResultCollection(data));
 
@@ -88,4 +99,4 @@ class ShapelyPredicatesHandling {
     }
 }
 
-export {ShapelyPredicatesHandling, TurfPredicatesHandling, serviceCollection}
+export {PythonPredicatesHandling, TurfPredicatesHandling, serviceCollection}

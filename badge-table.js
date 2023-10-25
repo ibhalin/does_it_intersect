@@ -130,7 +130,7 @@ class BadgeTable extends HTMLElement {
     _populateBadgePanelCollection() {
         const badgePanelCollection = [];
         for (var i in serviceCollection) {
-            const row = new BadgePanel(serviceCollection[i]);
+            const row = new BadgePanel(serviceCollection[i].name);
             badgePanelCollection.push(row);
         }
         return badgePanelCollection

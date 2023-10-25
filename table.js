@@ -137,7 +137,7 @@ class Table extends HTMLElement {
     _populateRowCollection() {
         const rowCollection = [this.headerRow];
         for (var i in serviceCollection) {
-            const row = new Row(serviceCollection[i]);
+            const row = new Row(serviceCollection[i].name);
             rowCollection.push(row);
         }
         return rowCollection

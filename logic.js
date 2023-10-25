@@ -1,4 +1,4 @@
-import {ShapelyPredicatesHandling, TurfPredicatesHandling} from "./handling.js"
+import {PythonPredicatesHandling, TurfPredicatesHandling, serviceCollection} from "./handling.js"
 import {CustomFeaturesClass} from "./features.js";
 
 class StyleControler {
@@ -163,14 +163,35 @@ class Results extends HTMLElement {
       if (features.features.length > 1) {
   
         const resultsObject = {};
+
+        // Turf
   
         resultsObject.turf = TurfPredicatesHandling.getResultData(features.asArrayOfGeoJson());
         resultsObject.turf.pushToDOM();
+
+        // Shapely
+
+        const shapelyService = serviceCollection.shapely
+
+        const shapelyPredicateHandling = new PythonPredicatesHandling(shapelyService.name, shapelyService.url)
   
-        ShapelyPredicatesHandling.fetchResultData(features.asArrayOfString())
+        shapelyPredicateHandling.fetchResultData(features.asArrayOfString())
           .then( (resultData) => {
             resultsObject.shapely = resultData;
             resultsObject.shapely.pushToDOM();
+          }
+        );
+
+        // Postgis
+
+        const postgisService = serviceCollection.postgis
+
+        const postgisPredicateHandling = new PythonPredicatesHandling(postgisService.name, postgisService.url)
+  
+        postgisPredicateHandling.fetchResultData(features.asArrayOfString())
+          .then( (resultData) => {
+            resultsObject.postgis = resultData;
+            resultsObject.postgis.pushToDOM();
           }
         );
       }
